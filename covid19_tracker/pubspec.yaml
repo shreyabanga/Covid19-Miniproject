@@ -1,5 +1,5 @@
-name: covid19_tracker
-description: A new Flutter project.
+name: rest_api
+description: A new Flutter application.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
@@ -23,17 +23,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  # Add the dependency for the Firebase Core Flutter SDK
-  firebase_core: ^0.4.0+9
-
-  # Add the dependency for the FlutterFire plugin for Google Analytics
-  firebase_analytics: ^5.0.2
-
-  # Add the dependencies for any other Firebase products you want to use in your app
-  # For example, to use Firebase Authentication and Cloud Firestore
-  firebase_auth: ^0.14.0+5
-  cloud_firestore: ^0.13.6
-  google_sign_in: ^4.0.12
 
 
   # The following adds the Cupertino Icons font to your application.

@@ -1,6 +1,6 @@
-# covid19_tracker
+# rest_api
 
-A new Flutter project.
+A new Flutter application.
 
 ## Getting Started
 
