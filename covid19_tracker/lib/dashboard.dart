@@ -11,8 +11,6 @@ class Dashboard extends StatefulWidget {
 
 }
 
-
-
 class DashboardState extends State<Dashboard> {
 
   var data = [22.0, 1.0, 1.5, 0.0, 0.0, 0.0, -0.5, -1.0, -0.5, 0.0, 0.0,22.0, 1.0, 1.5, 0.0, 0.0, 0.0, -0.5, -1.0, -0.5, 0.0, 0.0];
@@ -21,7 +19,10 @@ class DashboardState extends State<Dashboard> {
   bool loading = true;
   String dropdownValue = "United States of America";
   int country=177;
-  //var covidData, globalData;
+  List<double> cases = [];
+  
+  
+  
 
 @override
   void initState() {
@@ -31,16 +32,20 @@ class DashboardState extends State<Dashboard> {
     
 }
 
-
 getData() async {
-await getCovidSummary();  
-  //print(covidData);
-  print (dataa);
+await getCovidSummary(); 
+
+var temp = await getCases("india"); 
+  print("here");
   setState(() {
     loading = false;
+    cases = temp;
+
     //globalData = covidData["Global"];
 
   });
+
+  
 }
 
   @override
@@ -150,7 +155,7 @@ await getCovidSummary();
                       "Total Confirmed Cases",
                       formatNumbers(countryData[country]["NewConfirmed"])+ " New Confirmed Cases",
                       formatNumbers(countryData[country]["TotalConfirmed"]),
-                      data),
+                      cases),
                       
                   ),
                   Padding(
@@ -299,10 +304,12 @@ await getCovidSummary();
                       iconSize: 25,
                       elevation: 16,
                       style: TextStyle(color: Colors.orange),
-                      onChanged: (String newValue) {
+                      onChanged: (String newValue) async{
+                        var temp = await getCases(countryData[countries.indexOf(newValue)]["Slug"]);
                         setState(() {
                           dropdownValue = newValue;
                           country = countries.indexOf(newValue);
+                          cases = temp;
                         });
                       },
                       items: countries
