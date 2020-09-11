@@ -28,8 +28,9 @@ class App extends StatelessWidget {
       //locale: DevicePreview.of(context).locale,
       //builder: DevicePreview.appBuilder,
       theme: ThemeData(
-        primaryColor: Colors.deepOrange[300],
-        backgroundColor: Colors.deepOrange[50],
+        primaryColor: Colors.tealAccent[400],
+        accentColor: Colors.tealAccent[700],
+        backgroundColor: Colors.tealAccent[100],
         brightness: Brightness.light,
       ),
       debugShowCheckedModeBanner: false,

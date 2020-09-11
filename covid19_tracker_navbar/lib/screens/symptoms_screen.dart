@@ -9,7 +9,7 @@ class SymptomScreen extends StatelessWidget {
       alignment: Alignment.center,
       child: Text(
         'Your Past Symptoms Displayed Here',
-        style: TextStyle(fontSize: 30, color: Colors.deepOrange[900]),
+        style: TextStyle(fontSize: 30, color: Colors.teal[900]),
       ),
     );
   }

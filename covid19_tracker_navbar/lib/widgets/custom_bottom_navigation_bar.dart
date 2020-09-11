@@ -32,16 +32,19 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                 child: Container(
                   height: 60,
                   width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        Theme.of(context).primaryColor.withAlpha(150),
-                        Theme.of(context).primaryColor,
-                      ],
-                    ),
-                  ),
+                  color: Theme.of(context).accentColor,
+                  // decoration: BoxDecoration(
+                  //   gradient: LinearGradient(
+                  //     begin: Alignment.topCenter,
+                  //     end: Alignment.bottomCenter,
+                  //     colors: [
+                  //       //Theme.of(context).primaryColor.withAlpha(150),
+                  //       //Theme.of(context).primaryColor,
+                  //       Colors.teal,
+                  //       Colors.tealAccent
+                  //     ],
+                  //   ),
+                  // ),
                 ),
               ),
             ),
@@ -51,7 +54,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  CustomNavItem(setPage: setPage, icon: Icons.wash, id: 0),
+                  CustomNavItem(setPage: setPage, icon: Icons.arrow_back, id: 0),
                   Container(),
                   CustomNavItem(
                       setPage: setPage, icon: Icons.bubble_chart, id: 1),
@@ -70,21 +73,21 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                     'Your Symptoms',
                     style: TextStyle(
                         //fontWeight: FontWeight.w500,
-                        color: Colors.deepOrange[800]),
+                        color: Colors.teal[800]),
                   ),
                   Container(),
                   Text(
                     'World Data',
                     style: TextStyle(
                         //fontWeight: FontWeight.w500,
-                        color: Colors.deepOrange[800]),
+                        color: Colors.teal[800]),
                   ),
                   Container(),
                   Text(
                     'Add Symptom',
                     style: TextStyle(
                         //fontWeight: FontWeight.w500,
-                        color: Colors.deepOrange[800]),
+                        color: Colors.teal[800]),
                   ),
                 ],
               ),

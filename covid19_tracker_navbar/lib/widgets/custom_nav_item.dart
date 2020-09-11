@@ -27,7 +27,7 @@ class CustomNavItem extends StatelessWidget {
           child: Icon(
             icon,
             color: currentIndex == id
-                ? Colors.deepOrange[300]
+                ? Colors.teal[300]
                 : Colors.white.withOpacity(0.9),
           ),
         ),

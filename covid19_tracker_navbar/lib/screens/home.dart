@@ -10,7 +10,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.deepOrange[50],
+      backgroundColor: Colors.white,
       extendBody: true,
       //appBar: CustomAppBar(), //We can put this back if we want
       body: PageView(

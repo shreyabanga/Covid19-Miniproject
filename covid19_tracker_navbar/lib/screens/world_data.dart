@@ -9,7 +9,7 @@ class WorldScreen extends StatelessWidget {
       alignment: Alignment.center,
       child: Text(
         'World Data Displayed Here',
-        style: TextStyle(fontSize: 30, color: Colors.deepOrange[900]),
+        style: TextStyle(fontSize: 30, color: Colors.teal[900]),
       ),
     );
   }
