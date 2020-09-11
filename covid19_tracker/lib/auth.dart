@@ -21,14 +21,26 @@ Future<String> signInWithGoogle() async {
   final FirebaseUser user = (await auth.signInWithCredential(credential)).user;
   print("signed in " + user.displayName);
  
-  return user.uid;
+  return user.displayName;
   
 }
 
 Future<void> signOut() async {
-  // Trigger the authentication flow
-  //final GoogleSignInAccount googleUser = await GoogleSignIn().signIn();
-  //return googleUser.displayName;
+  final FirebaseAuth auth = FirebaseAuth.instance;
+  await auth.signOut();
   GoogleSignIn().signOut();
   
+}
+
+Future<String> getCurrentUser() async{
+
+final FirebaseAuth auth = FirebaseAuth.instance;
+final FirebaseUser user = await auth.currentUser();
+  
+  if (user== null)
+    return "";
+  else 
+    return user.displayName;
+
+
 }
