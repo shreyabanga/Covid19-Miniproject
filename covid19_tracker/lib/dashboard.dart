@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sparkline/flutter_sparkline.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'covid_data.dart';
+import 'auth.dart';
 
 class Dashboard extends StatefulWidget {
   @override
@@ -9,36 +10,13 @@ class Dashboard extends StatefulWidget {
 }
 
 class DashboardState extends State<Dashboard> {
-  var data = [
-    22.0,
-    1.0,
-    1.5,
-    0.0,
-    0.0,
-    0.0,
-    -0.5,
-    -1.0,
-    -0.5,
-    0.0,
-    0.0,
-    22.0,
-    1.0,
-    1.5,
-    0.0,
-    0.0,
-    0.0,
-    -0.5,
-    -1.0,
-    -0.5,
-    0.0,
-    0.0
-  ];
-  var data1 = [0.0, -2.0, 3.5, -2.0, 0.5, 0.7, 0.8, 1.0, 2.0, 3.0, 3.2];
-
+  
   bool loading = true;
   String dropdownValue = "United States of America";
-  int country = 177;
+  int country = 179;
   List<double> cases = [];
+  List<String> countries = [];
+
 
   @override
   void initState() {
@@ -48,11 +26,12 @@ class DashboardState extends State<Dashboard> {
   }
 
   getData() async {
-    await getCovidSummary();
+    var temp1 = await getCovidSummary();
 
     var temp = await getCases("india");
     print("here");
     setState(() {
+      countries = temp1;
       loading = false;
       cases = temp;
 
@@ -89,6 +68,14 @@ class DashboardState extends State<Dashboard> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                   IconButton(
+                     icon: Icon(Icons.account_circle),
+                      onPressed: () async{
+                        await signOut();
+                        Navigator.pushNamedAndRemoveUntil(
+            context, '/logIn', ModalRoute.withName('/logIn'));
+
+                   }),
                     Text('COVID-19',
                         style: TextStyle(
                           color: Colors.white.withOpacity(0.6),

@@ -123,7 +123,14 @@ class LoginState extends State<Login> {
                             borderRadius:
                                 BorderRadius.all(Radius.circular(20.0))),
                         text: "Log in with Google", onPressed: () async {
-                      userName = await signInWithGoogle();
+                      try {
+                        userName = await signInWithGoogle();
+                        Navigator.pushNamed(context, '/dashboard');
+                      } catch(e) {
+                        print(e);
+                      }
+                      
+
                     }),
                   ),
                 ),

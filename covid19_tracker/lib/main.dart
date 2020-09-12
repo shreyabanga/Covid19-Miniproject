@@ -3,6 +3,8 @@
 // found in the LICENSE file.
 
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+//import 'package:provider/provider.dart';
 import 'login.dart';
 import 'dashboard.dart';
 
@@ -21,19 +23,35 @@ class MyApp extends StatelessWidget {
           primaryColorLight: Colors.redAccent,
           brightness: Brightness.light,
         ),
-        initialRoute: '/',
+        home: FutureBuilder<FirebaseUser>(
+          future: FirebaseAuth.instance.currentUser(),
+          builder: (context, AsyncSnapshot<FirebaseUser> snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              // log error to console
+              if (snapshot.error != null) {
+                print("error");
+                return Text(snapshot.error.toString());
+              }
+
+              // redirect to the proper page
+              return snapshot.hasData ? new Dashboard() : Login();
+            } else {
+              return Center(
+                child: Container(
+                  child: CircularProgressIndicator(),
+                  alignment: Alignment(0.0, 0.0),
+                ),
+              );
+            }
+          },
+        ),
+
+        //initialRoute: '/',
         routes: {
-          '/': (context) => new Login(),
-          //'/': (context) => new Dashboard(),
-          // '/LogIn': (BuildContext context) => new LoginPage(),
-          // '/Redirect': (BuildContext context) => new Redirect(auth: new Auth()),
-          // '/SignUp': (BuildContext context) => new InputForm(),
-          // '/Form': (BuildContext context) => new InputForm(),
-          // '/UploadPet': (BuildContext context) => new UploadPet(),
-          //// '/Org_Profile': (BuildContext context) => new OrgProfile(),
-          // '/Edit_Pet_Profile': (BuildContext context) => new EditPetProfile(),
-          // '/User_Profile' : (BuildContext context) => new UserProfile(),
-          //'/': (context) => OrgProfile(),
+          //  '/': (context) => new Login(),
+          '/dashboard': (context) => new Dashboard(),
+          '/logIn': (BuildContext context) => new Login(),
+          
         });
   }
 }

@@ -1,10 +1,11 @@
 
 
 import 'package:dio/dio.dart';
+import 'dashboard.dart';
 
 Map globalData;
 var countryData;
-List<String> countries = [];
+//List<String> countries = [];
 
 
 //do something about this?
@@ -12,7 +13,8 @@ var date = new DateTime.now().toString();
 var dateParse = DateTime.parse(date);
 var formattedDate = "${dateParse.year}-${dateParse.month}-${dateParse.day}";
 
-Future<Map> getCovidSummary() async {
+Future<List> getCovidSummary() async {
+  List<String> countries = [];
     var response = await Dio().get('https://api.covid19api.com/summary');
 
     globalData = response.data['Global'];
@@ -20,10 +22,10 @@ Future<Map> getCovidSummary() async {
     for(Map<dynamic,dynamic> country in countryData) {
       countries.add(country["Country"].toString());
     }
-    //print(countryData[177]);
+    //print(countryData[179]);
 
 
-    return response.data;
+    return countries;
 }
 
 Future<List<double>> getCases(String country,) async{
@@ -34,6 +36,6 @@ Future<List<double>> getCases(String country,) async{
   for(int i=0;i<response.data.length;i+=7)
   casesByWeek.add(response.data[i]['Cases'].toDouble());//[response.data[i]['Date'].toString().substring(0,10)] = 
 
-print(casesByWeek);
+//print(casesByWeek);
 return (casesByWeek);
 }
