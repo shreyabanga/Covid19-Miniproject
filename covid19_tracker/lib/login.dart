@@ -16,15 +16,6 @@ class LoginState extends State<Login> {
   String userName = "";
   bool visible = false;
 
-  // void initState() {
-  //   super.initState();
-  //   WidgetsBinding.instance.addPostFrameCallback((_) {
-  //     setState(() {
-  //       visible = true;
-  //     });
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -33,12 +24,7 @@ class LoginState extends State<Login> {
         body: Container(
             alignment: Alignment.center,
             padding: EdgeInsets.only(top: 100),
-            child: //AnimatedOpacity(
-
-                //         opacity: visible ? 1.0 : 0.0,
-                //         duration: Duration(seconds: 3),
-
-                //             child:
+            child: 
                 Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
