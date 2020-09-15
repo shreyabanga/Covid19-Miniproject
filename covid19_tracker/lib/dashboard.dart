@@ -10,13 +10,11 @@ class Dashboard extends StatefulWidget {
 }
 
 class DashboardState extends State<Dashboard> {
-  
   bool loading = true;
   String dropdownValue = "United States of America";
   int country = 179;
   List<double> cases = [];
   List<String> countries = [];
-
 
   @override
   void initState() {
@@ -28,8 +26,7 @@ class DashboardState extends State<Dashboard> {
   getData() async {
     var temp1 = await getCovidSummary();
 
-    var temp = await getCases("india");
-    print("here");
+    var temp = await getCases("united states of america");
     setState(() {
       countries = temp1;
       loading = false;
@@ -68,14 +65,21 @@ class DashboardState extends State<Dashboard> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                   IconButton(
-                     icon: Icon(Icons.account_circle),
-                      onPressed: () async{
-                        await signOut();
-                        Navigator.pushNamedAndRemoveUntil(
-            context, '/logIn', ModalRoute.withName('/logIn'));
-
-                   }),
+                    Container(
+                      alignment: Alignment.topRight,
+                      child: RaisedButton(
+                          child: Text("Logout"),
+                          shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20.0))),
+                          color: Theme.of(context).primaryColor,
+                          //icon: Icon(Icons.account_circle),
+                          onPressed: () async {
+                            await signOut();
+                            Navigator.pushNamedAndRemoveUntil(context, '/logIn',
+                                ModalRoute.withName('/logIn'));
+                          }),
+                    ),
                     Text('COVID-19',
                         style: TextStyle(
                           color: Colors.white.withOpacity(0.6),
@@ -329,6 +333,7 @@ class DashboardState extends State<Dashboard> {
                   ),
                   Padding(
                     padding: EdgeInsets.all(20.0),
+                    // child: Container(height: 150,
                     child: new Sparkline(
                       data: data,
                       pointsMode: PointsMode.all,
@@ -373,75 +378,108 @@ class DashboardState extends State<Dashboard> {
       return num.toString();
   }
 
-  // Container mychart2Items(String title, String priceVal,String subtitle) {
-  //   return Container(
-  //     decoration: BoxDecoration(
-  //       color: Colors.white,
-  //       borderRadius: BorderRadius.circular(20),
-  //       boxShadow: <BoxShadow>[
-  //         BoxShadow(
-  //         color:Colors.black.withOpacity(0.1),
-  //         offset: Offset(10,10),
-  //         blurRadius: 20
-  //         ),
-  //         BoxShadow(
-  //         color:Colors.white.withOpacity(0.8),
-  //         offset: Offset(-5,-5),
-  //         blurRadius: 20
-  //         ),
+//  LineChartData mainData(List<double> cases) {
+//    List<Color> gradientColors = [
+//     Colors.white,
+//     Color(0xff23b6e6),
+//     Color(0xff02d39a),
 
-  //       ]),
-  //     child: Center(
-  //       child: Padding(
-  //         padding: EdgeInsets.all(8.0),
-  //         child: Row(
-  //           mainAxisAlignment: MainAxisAlignment.center,
-  //           children: <Widget>[
-  //             Column(
-  //               mainAxisAlignment: MainAxisAlignment.center,
-  //               children: <Widget>[
+//   ];
+// double count = 1;
 
-  //                 Padding(
-  //                   padding: EdgeInsets.all(1.0),
-  //                   child: Text(title, style: TextStyle(
-  //                     fontSize: 20.0,
-  //                     color: Colors.blueAccent,
-  //                   ),),
-  //                 ),
+// double upperLimitY = cases.reduce(max);
+// double upperLimitX = cases.length.toDouble();
+// List data = cases.map((c) => FlSpot(count++,c)).toList();
 
-  //                 Padding(
-  //                   padding: EdgeInsets.all(1.0),
-  //                   child: Text(priceVal, style: TextStyle(
-  //                     fontSize: 30.0,
-  //                   ),),
-  //                 ),
-  //                 Padding(
-  //                   padding: EdgeInsets.all(1.0),
-  //                   child: Text(subtitle, style: TextStyle(
-  //                     fontSize: 20.0,
-  //                     color: Colors.blueGrey,
-  //                   ),),
-  //                 ),
+//     return LineChartData(
+//       lineTouchData: LineTouchData(enabled: false),
+//       gridData: FlGridData(show: false,),
+//       titlesData: FlTitlesData(
+//         show: true,
+//         bottomTitles: SideTitles(
+//           showTitles: true,
+//           reservedSize: 22,
+//           textStyle:
+//               const TextStyle(color: Color(0xff68737d), fontSize: 10),
+//           getTitles: (value) {
+//             switch (value.toInt()) {
+//               case 1:
+//                 return 'MAR';
+//               case 5:
+//                 return 'APR';
+//               case 9:
+//                 return 'MAY';
+//               case 13:
+//                 return 'JUN';
+//               case 17:
+//                 return 'JUL';
+//               case 21:
+//                 return 'AUG';
+//               case 25:
+//                 return 'SEP';
+//             }
+//             return '';
+//           },
+//           margin: 8,
+//         ),
+//         leftTitles: SideTitles(
+//           showTitles: true,
+//           textStyle: const TextStyle(
+//             color: Color(0xff67727d),
+//             fontSize: 15,
+//           ),
+//           getTitles: (value) {
+//             switch (value.toInt()) {
+//               case 10000:
+//                 return '10k';
+//               case 100000:
+//                 return '100k';
+//               case 1000000:
+//                 return '1M';
+//             }
+//             return '';
+//           },
+//           //reservedSize: 28,
+//           //margin: 12,
+//         ),
+//       ),
+//       borderData:
+//           FlBorderData(show: false),
 
-  //                 Padding(
-  //                   padding: EdgeInsets.all(1.0),
-  //                   child: new Sparkline(
-  //                     data: data1,
-  //                     fillMode: FillMode.below,
-  //                     fillGradient: new LinearGradient(
-  //                       begin: Alignment.topCenter,
-  //                       end: Alignment.bottomCenter,
-  //                       colors: [Colors.amber[800], Colors.amber[200]],
-  //                     ),
-  //                   ),
-  //                 ),
-  //               ],
-  //             ),
-  //           ],
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
+//       minX: 0,
+//       maxX: 35,
+//       minY: 0,
+//       maxY: 10000000,//cases.reduce(max),
+
+//       lineBarsData: [
+//         LineChartBarData(
+//           spots: data,
+//           // [
+//           //     FlSpot(0, 1),
+//           //     FlSpot(1, 2),
+//           //     FlSpot(2, 100),
+//           //     //FlSpot(3, 100000),
+//           //     //FlSpot(4, 1000),
+//           //     //FlSpot(5, 100000),
+//           //     ],
+
+//           //show: false,
+//           isCurved: true,
+//           colors: [Color(0xff23b6e6),Color(0xff02d39a)],
+//           barWidth: 5,
+//           isStrokeCapRound: true,
+//           dotData: FlDotData(
+//             show: true,
+
+//           ),
+//           belowBarData: BarAreaData(
+//             show: true,
+//             colors: gradientColors.map((color) => color.withOpacity(0.3)).toList(),
+//             gradientFrom: Offset(1.1, 1.5)
+//           ),
+//         ),
+//       ],
+//     );
+//   }
 
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'adminView.dart';
 import 'login.dart';
 import 'dashboard.dart';
 
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
                 return Text(snapshot.error.toString());
               }
 
-              return snapshot.hasData ? new Dashboard() : Login();
+              return snapshot.hasData ? new AdminView() : Login();
             } else {
               return Center(
                 child: Container(

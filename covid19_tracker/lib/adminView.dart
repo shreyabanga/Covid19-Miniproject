@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sparkline/flutter_sparkline.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'user_data.dart';
 import 'covid_data.dart';
 import 'auth.dart';
 
@@ -17,11 +18,18 @@ class AdminState extends State<AdminView> {
   List<double> cases = [];
   List<String> countries = [];
 
+  var formattedDate;
+
 
   @override
   void initState() {
     super.initState();
     print("fetching data");
+
+    missingForms();
+
+    
+
     getData();
   }
 
@@ -68,14 +76,21 @@ class AdminState extends State<AdminView> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                   IconButton(
-                     icon: Icon(Icons.account_circle),
-                      onPressed: () async{
-                        await signOut();
-                        Navigator.pushNamedAndRemoveUntil(
-            context, '/logIn', ModalRoute.withName('/logIn'));
-
-                   }),
+                   Container(
+                      alignment: Alignment.topRight,
+                      child: RaisedButton(
+                          child: Text("Logout"),
+                          shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20.0))),
+                          color: Theme.of(context).primaryColor,
+                          //icon: Icon(Icons.account_circle),
+                          onPressed: () async {
+                            await signOut();
+                            Navigator.pushNamedAndRemoveUntil(context, '/logIn',
+                                ModalRoute.withName('/logIn'));
+                          }),
+                    ),
                     Text('COVID-19',
                         style: TextStyle(
                           color: Colors.white.withOpacity(0.6),
@@ -110,10 +125,9 @@ class AdminState extends State<AdminView> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: myTextItems(
-                                "Global Confirmed Cases",
-                                formatNumbers(globalData["NewConfirmed"]) +
-                                    " New Confirmed Cases",
-                                formatNumbers(globalData["TotalConfirmed"]),
+                                "Number of Submitted Forms Today",
+                                "",
+                                
                               ),
                             ),
 
@@ -121,15 +135,13 @@ class AdminState extends State<AdminView> {
                                 padding: const EdgeInsets.all(8.0),
                                 child: myTextItems(
                                     "Total Deaths",
-                                    formatNumbers(globalData["NewDeaths"]) +
-                                        " New Deaths",
+                                    
                                     formatNumbers(globalData["TotalDeaths"]))),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: myTextItems(
                                   "Total Recovered",
-                                  formatNumbers(globalData["NewRecovered"]) +
-                                      " New Recovered Cases",
+                                 
                                   formatNumbers(globalData["TotalRecovered"])),
                             ),
 
@@ -148,18 +160,14 @@ class AdminState extends State<AdminView> {
                                 padding: const EdgeInsets.all(8.0),
                                 child: myTextItems(
                                     "Total Deaths",
-                                    formatNumbers(
-                                            countryData[country]["NewDeaths"]) +
-                                        " New Deaths",
+                                    
                                     formatNumbers(
                                         countryData[country]["TotalDeaths"]))),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: myTextItems(
                                   "Total Recovered",
-                                  formatNumbers(countryData[country]
-                                          ["NewRecovered"]) +
-                                      " New Recovered Cases",
+                                  
                                   formatNumbers(
                                       countryData[country]["TotalRecovered"])),
                             ),
@@ -187,7 +195,7 @@ class AdminState extends State<AdminView> {
     );
   }
 
-  Container myTextItems(String title, String subtitle, String value) {
+  Container myTextItems(String title, String value) {
     return Container(
       decoration: BoxDecoration(
           color: Colors.white,
@@ -221,16 +229,7 @@ class AdminState extends State<AdminView> {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.all(1.0),
-                    child: Text(
-                      subtitle,
-                      style: TextStyle(
-                        fontSize: 12.0,
-                        color: Colors.blueGrey,
-                      ),
-                    ),
-                  ),
+                  
                   Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Text(
