@@ -4,12 +4,12 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'covid_data.dart';
 import 'auth.dart';
 
-class Dashboard extends StatefulWidget {
+class AdminView extends StatefulWidget {
   @override
-  DashboardState createState() => DashboardState();
+  AdminState createState() => AdminState();
 }
 
-class DashboardState extends State<Dashboard> {
+class AdminState extends State<AdminView> {
   
   bool loading = true;
   String dropdownValue = "United States of America";
@@ -83,7 +83,7 @@ class DashboardState extends State<Dashboard> {
                           fontWeight: FontWeight.bold,
                           fontFamily: 'Roboto',
                         )),
-                    Text('Dashboard',
+                    Text('Admin Dashboard',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 40,
