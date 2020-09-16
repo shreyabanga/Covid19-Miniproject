@@ -1,9 +1,24 @@
+import 'package:covid19_tracker_navbar/services/notes_service.dart';
 import 'package:flutter/material.dart';
+//import 'package:device_preview/device_preview.dart';
+import 'package:flutter/services.dart';
+import 'package:get_it/get_it.dart';
+import 'screens/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'login.dart';
 import 'dashboard.dart';
 
-void main() => runApp(MyApp());
+PageController pageController = PageController(initialPage: 0);
+int currentIndex = 0;
+
+void setupLocator() {
+  GetIt.instance.registerLazySingleton(() => NotesService());
+}
+
+void main() {
+  setupLocator();
+  runApp(App());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -50,5 +65,6 @@ class MyApp extends StatelessWidget {
           '/logIn': (BuildContext context) => new Login(),
           
         });
+
   }
 }
