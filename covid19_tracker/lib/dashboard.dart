@@ -9,7 +9,8 @@ class Dashboard extends StatefulWidget {
   DashboardState createState() => DashboardState();
 }
 
-class DashboardState extends State<Dashboard> {
+class DashboardState extends State<Dashboard>
+    with AutomaticKeepAliveClientMixin<Dashboard> {
   bool loading = true;
   String dropdownValue = "United States of America";
   int country = 179;
@@ -18,178 +19,197 @@ class DashboardState extends State<Dashboard> {
 
   @override
   void initState() {
-    super.initState();
     print("fetching data");
     getData();
+    super.initState();
   }
 
   getData() async {
     var temp1 = await getCovidSummary();
-
     var temp = await getCases("united states of america");
     setState(() {
       countries = temp1;
       loading = false;
       cases = temp;
-
-      //globalData = covidData["Global"];
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Covid-19 Tracker',
-      home: Scaffold(
-        body: Container(
-          //padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
-          color: Color.fromRGBO(244, 242, 242, 1),
-          //color:Colors.amber[800],
-
-          child: Column(
-            children: [
-              Container(
-                height: 250,
-                padding: EdgeInsets.only(left: 20, top: 100),
-                alignment: Alignment.centerLeft,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColorDark,
-                    borderRadius: BorderRadius.circular(40),
-                    boxShadow: <BoxShadow>[
-                      BoxShadow(
-                          color: Colors.black.withOpacity(0.2),
-                          offset: Offset(1.1, 1.1),
-                          blurRadius: 10),
-                    ]),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      alignment: Alignment.topRight,
-                      child: RaisedButton(
-                          child: Text("Logout"),
-                          shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20.0))),
-                          color: Theme.of(context).primaryColor,
-                          //icon: Icon(Icons.account_circle),
-                          onPressed: () async {
-                            await signOut();
-                            Navigator.pushNamedAndRemoveUntil(context, '/logIn',
-                                ModalRoute.withName('/logIn'));
-                          }),
-                    ),
-                    Text('COVID-19',
-                        style: TextStyle(
-                          color: Colors.white.withOpacity(0.6),
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Roboto',
-                        )),
-                    Text('Dashboard',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 40,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Roboto',
-                        )),
-                  ],
-                ),
+        title: 'Covid-19 Tracker',
+        home: Scaffold(
+            appBar: AppBar(
+              backgroundColor: Theme.of(context).primaryColorDark,
+              leading: RaisedButton(
+                  child: Text(
+                    "Logout",
+                    style: TextStyle(fontSize: 7),
+                  ),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(50.0))),
+                  color: Theme.of(context).primaryColor,
+                  //icon: Icon(Icons.account_circle),
+                  onPressed: () async {
+                    await signOut();
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, '/logIn', ModalRoute.withName('/logIn'));
+                  }),
+              title: Text(
+                "Dashboard",
+                style: TextStyle(color: Colors.white, fontSize: 25),
               ),
-              loading
-                  ? Center(
-                      child: Container(
-                        child: CircularProgressIndicator(),
-                      ),
-                    )
-                  : Expanded(
-                      child: Container(
-                        child: StaggeredGridView.count(
-                          //shrinkWrap: true,
-                          crossAxisCount: 4,
-                          crossAxisSpacing: 12.0,
-                          mainAxisSpacing: 12.0,
-                          children: <Widget>[
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: myTextItems(
-                                "Global Confirmed Cases",
-                                formatNumbers(globalData["NewConfirmed"]) +
-                                    " New Confirmed Cases",
-                                formatNumbers(globalData["TotalConfirmed"]),
-                              ),
-                            ),
+            ),
+            body: Container(
+                child: Column(
+              children: [
+                // Container(
+                //   height: 250,
+                //   padding: EdgeInsets.only(left: 20, top: 100),
+                //   alignment: Alignment.centerLeft,
+                //   width: double.infinity,
+                //   decoration: BoxDecoration(
+                //       color: Theme.of(context).primaryColorDark,
+                //       borderRadius: BorderRadius.circular(40),
+                //       boxShadow: <BoxShadow>[
+                //         BoxShadow(
+                //             color: Colors.black.withOpacity(0.2),
+                //             offset: Offset(1.1, 1.1),
+                //             blurRadius: 10),
+                //       ]),
+                //   child: Column(
+                //     crossAxisAlignment: CrossAxisAlignment.start,
+                //     children: [
+                //       Container(
+                //         alignment: Alignment.topRight,
+                //         child: RaisedButton(
+                //             child: Text("Logout"),
+                //             shape: RoundedRectangleBorder(
+                //                 borderRadius:
+                //                     BorderRadius.all(Radius.circular(20.0))),
+                //             color: Theme.of(context).primaryColor,
+                //             //icon: Icon(Icons.account_circle),
+                //             onPressed: () async {
+                //               await signOut();
+                //               Navigator.pushNamedAndRemoveUntil(context,
+                //                   '/logIn', ModalRoute.withName('/logIn'));
+                //             }),
+                //       ),
+                //       Text('COVID-19',
+                //           style: TextStyle(
+                //             color: Colors.white.withOpacity(0.6),
+                //             fontSize: 20,
+                //             fontWeight: FontWeight.bold,
+                //             fontFamily: 'Roboto',
+                //           )),
+                //       Text('Dashboard',
+                //           style: TextStyle(
+                //             color: Colors.white,
+                //             fontSize: 40,
+                //             fontWeight: FontWeight.bold,
+                //             fontFamily: 'Roboto',
+                //           )),
+                //     ],
+                //   ),
+                // ),
+                loading
+                    ? Center(
+                        child: Container(
+                          child: CircularProgressIndicator(),
+                        ),
+                      )
+                    : Expanded(
+                        child: Container(
+                          //padding: EdgeInsets.only(bottom: 100),
 
-                            Padding(
+                          child: StaggeredGridView.count(
+                            //shrinkWrap: true,
+                            padding: EdgeInsets.only(top: 50, bottom: 100),
+                            crossAxisCount: 4,
+                            crossAxisSpacing: 12.0,
+                            mainAxisSpacing: 12.0,
+                            children: <Widget>[
+                              Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: myTextItems(
-                                    "Total Deaths",
-                                    formatNumbers(globalData["NewDeaths"]) +
-                                        " New Deaths",
-                                    formatNumbers(globalData["TotalDeaths"]))),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: myTextItems(
-                                  "Total Recovered",
-                                  formatNumbers(globalData["NewRecovered"]) +
-                                      " New Recovered Cases",
-                                  formatNumbers(globalData["TotalRecovered"])),
-                            ),
-
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: mychart1Items(
-                                  "Total Confirmed Cases",
-                                  formatNumbers(countryData[country]
-                                          ["NewConfirmed"]) +
+                                  "Global Confirmed Cases",
+                                  formatNumbers(globalData["NewConfirmed"]) +
                                       " New Confirmed Cases",
-                                  formatNumbers(
-                                      countryData[country]["TotalConfirmed"]),
-                                  cases),
-                            ),
-                            Padding(
+                                  formatNumbers(globalData["TotalConfirmed"]),
+                                ),
+                              ),
+
+                              Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: myTextItems(
+                                      "Total Deaths",
+                                      formatNumbers(globalData["NewDeaths"]) +
+                                          " New Deaths",
+                                      formatNumbers(
+                                          globalData["TotalDeaths"]))),
+                              Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: myTextItems(
-                                    "Total Deaths",
+                                    "Total Recovered",
+                                    formatNumbers(globalData["NewRecovered"]) +
+                                        " New Recovered Cases",
                                     formatNumbers(
-                                            countryData[country]["NewDeaths"]) +
-                                        " New Deaths",
+                                        globalData["TotalRecovered"])),
+                              ),
+
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: mychart1Items(
+                                    "Total Confirmed Cases",
+                                    formatNumbers(countryData[country]
+                                            ["NewConfirmed"]) +
+                                        " New Confirmed Cases",
                                     formatNumbers(
-                                        countryData[country]["TotalDeaths"]))),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: myTextItems(
-                                  "Total Recovered",
-                                  formatNumbers(countryData[country]
-                                          ["NewRecovered"]) +
-                                      " New Recovered Cases",
-                                  formatNumbers(
-                                      countryData[country]["TotalRecovered"])),
-                            ),
-                            // Padding(
-                            //   padding: const EdgeInsets.all(8.0),
-                            //   child: mychart2Items("Conversion","0.9M","+19% of target"),
-                            // ),
-                          ],
-                          staggeredTiles: [
-                            StaggeredTile.extent(4, 150.0),
-                            StaggeredTile.extent(2, 150.0),
-                            StaggeredTile.extent(2, 150.0),
-                            StaggeredTile.extent(4, 370.0),
-                            StaggeredTile.extent(2, 150.0),
-                            StaggeredTile.extent(2, 150.0),
-                            //StaggeredTile.extent(2, 120.0),
-                          ],
+                                        countryData[country]["TotalConfirmed"]),
+                                    cases),
+                              ),
+                              Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: myTextItems(
+                                      "Total Deaths",
+                                      formatNumbers(countryData[country]
+                                              ["NewDeaths"]) +
+                                          " New Deaths",
+                                      formatNumbers(countryData[country]
+                                          ["TotalDeaths"]))),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: myTextItems(
+                                    "Total Recovered",
+                                    formatNumbers(countryData[country]
+                                            ["NewRecovered"]) +
+                                        " New Recovered Cases",
+                                    formatNumbers(countryData[country]
+                                        ["TotalRecovered"])),
+                              ),
+                              // Padding(
+                              //   padding: const EdgeInsets.all(8.0),
+                              //   child: mychart2Items("Conversion","0.9M","+19% of target"),
+                              // ),
+                            ],
+                            staggeredTiles: [
+                              StaggeredTile.extent(4, 150.0),
+                              StaggeredTile.extent(2, 150.0),
+                              StaggeredTile.extent(2, 150.0),
+                              StaggeredTile.extent(4, 370.0),
+                              StaggeredTile.extent(2, 150.0),
+                              StaggeredTile.extent(2, 150.0),
+                              //StaggeredTile.extent(2, 120.0),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-            ],
-          ),
-        ),
-      ),
-    );
+              ],
+            ))));
   }
+
+  @override
+  bool get wantKeepAlive => true;
 
   Container myTextItems(String title, String subtitle, String value) {
     return Container(

@@ -30,6 +30,7 @@ dependencies:
   # Add the dependency for the Firebase Core Flutter SDK
   firebase_core: ^0.4.0+9
   dio: ^3.0.8
+  shared_preferences: ^0.5.3+5
 
 
   # Add the dependencies for any other Firebase products you want to use in your app

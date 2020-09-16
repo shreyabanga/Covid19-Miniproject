@@ -23,6 +23,7 @@ class _SymptomSurveyState extends State<SymptomSurvey> {
     return new Scaffold(
       //backgroundColor: Colors.deepOrange[50],
       appBar: AppBar(
+        backgroundColor: Theme.of(context).primaryColorDark,
         title: Text(
           "Daily Symptoms Survey",
           style: TextStyle(color: Colors.white),
@@ -42,8 +43,8 @@ class _SymptomSurveyState extends State<SymptomSurvey> {
                       child: Text(
                         "Are you experiencing any of the following symptoms? If so, please rate from a scale of 0-100",
                         style: TextStyle(
-                            color: Colors.deepOrange[500],
-                            fontSize: 12.0,
+                            color: Theme.of(context).primaryColorLight,
+                            fontSize: 15.0,
                             fontWeight: FontWeight.bold),
                       ),
                     ),
@@ -370,7 +371,7 @@ class _SymptomSurveyState extends State<SymptomSurvey> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(275.0),
+                  padding: const EdgeInsets.all(100.0),
                 ),
               ],
             ),
