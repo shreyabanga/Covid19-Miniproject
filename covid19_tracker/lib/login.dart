@@ -1,4 +1,4 @@
-import 'package:covid19_tracker/inforrmation_card.dart';
+import 'information_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/button_list.dart';
 import 'package:flutter_signin_button/button_view.dart';
@@ -24,8 +24,7 @@ class LoginState extends State<Login> {
         body: Container(
             alignment: Alignment.center,
             padding: EdgeInsets.only(top: 100),
-            child: 
-                Column(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 DelayedDisplay(
@@ -111,12 +110,10 @@ class LoginState extends State<Login> {
                         text: "Log in with Google", onPressed: () async {
                       try {
                         userName = await signInWithGoogle();
-                        Navigator.pushNamed(context, '/dashboard');
-                      } catch(e) {
+                        Navigator.pushNamed(context, '/home');
+                      } catch (e) {
                         print(e);
                       }
-                      
-
                     }),
                   ),
                 ),

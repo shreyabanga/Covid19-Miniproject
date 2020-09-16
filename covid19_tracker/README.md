@@ -1,6 +1,6 @@
-# covid19_tracker
+# covid19_tracker_navbar
 
-A new Flutter project.
+A new Flutter application.
 
 ## Getting Started
 

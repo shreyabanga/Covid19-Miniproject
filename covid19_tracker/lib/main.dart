@@ -1,18 +1,31 @@
+import 'screens/home.dart';
+import 'package:covid19_tracker_navbar/services/notes_service.dart';
 import 'package:flutter/material.dart';
+//import 'package:device_preview/device_preview.dart';
+import 'package:flutter/services.dart';
+import 'package:get_it/get_it.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'adminView.dart';
 import 'login.dart';
 import 'dashboard.dart';
 
-void main() => runApp(MyApp());
+PageController pageController = PageController(initialPage: 0);
+int currentIndex = 0;
+
+void setupLocator() {
+  GetIt.instance.registerLazySingleton(() => NotesService());
+}
+
+void main() {
+  setupLocator();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Covid-19 Tracker',
-
-        
         theme: ThemeData(
           primaryColor: Colors.tealAccent[400],
           primaryColorDark: Colors.tealAccent[700],
@@ -21,8 +34,6 @@ class MyApp extends StatelessWidget {
           primaryColorLight: Colors.redAccent,
           brightness: Brightness.light,
         ),
-
-
         home: FutureBuilder<FirebaseUser>(
           future: FirebaseAuth.instance.currentUser(),
           builder: (context, AsyncSnapshot<FirebaseUser> snapshot) {
@@ -32,7 +43,7 @@ class MyApp extends StatelessWidget {
                 return Text(snapshot.error.toString());
               }
 
-              return snapshot.hasData ? new AdminView() : Login();
+              return snapshot.hasData ? new Home() : Login();
             } else {
               return Center(
                 child: Container(
@@ -49,7 +60,7 @@ class MyApp extends StatelessWidget {
           //  '/': (context) => new Login(),
           '/dashboard': (context) => new Dashboard(),
           '/logIn': (BuildContext context) => new Login(),
-          
+          '/home': (context) => new Home(),
         });
   }
 }
