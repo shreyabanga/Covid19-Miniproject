@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 class NoteModify extends StatelessWidget {
   final String noteID;
-
   bool get isEditing => noteID != null;
 
   NoteModify({this.noteID});
@@ -10,14 +9,15 @@ class NoteModify extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:
-          AppBar(title: Text(isEditing ? 'Edit Symptom' : 'Create Symptom')),
+      appBar: AppBar(
+        title: Text(isEditing ? "Editing symptom" : "Creating new symptom"),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Column(
           children: <Widget>[
             TextField(
-              decoration: InputDecoration(hintText: 'Symptom'),
+              decoration: InputDecoration(hintText: 'Symptom title'),
             ),
             Container(height: 8),
             TextField(

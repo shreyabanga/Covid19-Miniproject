@@ -1,4 +1,4 @@
-# rest_api
+# covid19_tracker_navbar
 
 A new Flutter application.
 

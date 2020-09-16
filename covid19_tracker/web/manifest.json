@@ -1,6 +1,6 @@
 {
-    "name": "rest_api",
-    "short_name": "rest_api",
+    "name": "covid19_tracker_navbar",
+    "short_name": "covid19_tracker_navbar",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

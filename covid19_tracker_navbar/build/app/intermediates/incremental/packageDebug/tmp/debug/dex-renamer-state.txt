@@ -1,4 +1,0 @@
-#Tue Sep 15 13:55:23 EDT 2020
-base.0=C\:\\Users\\SUREYYA\\AndroidStudioProjects\\covid19_tracker_navbar\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
-path.0=classes.dex
-renamed.0=classes.dex
