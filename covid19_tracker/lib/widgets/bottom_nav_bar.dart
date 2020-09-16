@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../clipper/wave_clipper.dart';
 import 'nav_bar_item.dart';
 import '../main.dart';
@@ -50,11 +49,11 @@ class _BottomNavBarState extends State<BottomNavBar> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  NavBarItem(setPage: setPage, icon: Icons.notes, id: 0),
+                  NavBarItem(setPage: setPage, icon: Icons.event_note, id: 0),
                   Container(),
                   NavBarItem(setPage: setPage, icon: Icons.bubble_chart, id: 1),
                   Container(),
-                  NavBarItem(setPage: setPage, icon: Icons.wash, id: 2),
+                  NavBarItem(setPage: setPage, icon: Icons.account_box, id: 2),
                 ],
               ),
             ),

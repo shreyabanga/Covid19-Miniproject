@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rest_api/models/note_for_listing.dart';
+import '../models/note_for_listing.dart';
 
 import 'note_delete.dart';
 import 'note_modify.dart';

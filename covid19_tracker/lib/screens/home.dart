@@ -1,4 +1,3 @@
-import '../widgets/unused_app_bar.dart';
 import 'package:flutter/material.dart';
 import './note_list.dart';
 import './world_data.dart';
