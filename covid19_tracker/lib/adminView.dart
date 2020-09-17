@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sparkline/flutter_sparkline.dart';
-import 'package:pie_chart/pie_chart.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'user_data.dart';
 import 'auth.dart';
@@ -13,6 +11,7 @@ class AdminView extends StatefulWidget {
 class AdminState extends State<AdminView> {
   bool loading = true;
   List usersSubmitted;
+  double numUsersSubmitted;
   List<Map<String, dynamic>> usersNotSubmitted;
   Map symptomStats;
 
@@ -33,6 +32,7 @@ class AdminState extends State<AdminView> {
       usersSubmitted = temp[0];
       usersNotSubmitted = temp[1];
       symptomStats = temp1;
+      numUsersSubmitted = usersSubmitted.length.toDouble();
     });
   }
 
@@ -155,69 +155,109 @@ class AdminState extends State<AdminView> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: myTextItems(
-                                  "Fever", symptomStats['fever'].toString()),
+                                  "Fever",
+                                  (symptomStats['fever'] *
+                                              100 /
+                                              numUsersSubmitted)
+                                          .toString() +
+                                      "%"),
                             ),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: myTextItems(
-                                "Cough",
-                                symptomStats['cough'].toString(),
-                              ),
+                                  "Cough",
+                                  (symptomStats['cough'] *
+                                              100 /
+                                              numUsersSubmitted)
+                                          .toString() +
+                                      "%"),
                             ),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: myTextItems(
                                 "Headache",
-                                symptomStats['headache'].toString(),
+                                (symptomStats['headache'] *
+                                            100 /
+                                            numUsersSubmitted)
+                                        .toString() +
+                                    "%",
                               ),
                             ),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: myTextItems(
                                 "Nausea",
-                                symptomStats['nausea'].toString(),
+                                (symptomStats['nausea'] *
+                                            100 /
+                                            numUsersSubmitted)
+                                        .toString() +
+                                    "%",
                               ),
                             ),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: myTextItems(
                                 "Diarrhea",
-                                symptomStats['diarrhea'].toString(),
+                                (symptomStats['diarrhea'] *
+                                            100 /
+                                            numUsersSubmitted)
+                                        .toString() +
+                                    "%",
                               ),
                             ),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: myTextItems(
                                 "Fatigue",
-                                symptomStats['fatigue'].toString(),
+                                (symptomStats['fatigue'] *
+                                            100 /
+                                            numUsersSubmitted)
+                                        .toString() +
+                                    "%",
                               ),
                             ),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: myTextItems(
                                 "Sore Throat",
-                                symptomStats['soreThroat'].toString(),
+                                (symptomStats['soreThroat'] *
+                                            100 /
+                                            numUsersSubmitted)
+                                        .toString() +
+                                    "%",
                               ),
                             ),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: myTextItems(
                                 "Chest Pain",
-                                symptomStats['chestPain'].toString(),
+                                (symptomStats['chestPain'] *
+                                            100 /
+                                            numUsersSubmitted)
+                                        .toString() +
+                                    "%",
                               ),
                             ),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: myTextItems(
                                 "Weak sense of smell",
-                                symptomStats['smell'].toString(),
+                                (symptomStats['smell'] *
+                                            100 /
+                                            numUsersSubmitted)
+                                        .toString() +
+                                    "%",
                               ),
                             ),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: myTextItems(
                                 "Weak sense of taste",
-                                symptomStats['taste'].toString(),
+                                (symptomStats['taste'] *
+                                            100 /
+                                            numUsersSubmitted)
+                                        .toString() +
+                                    "%",
                               ),
                             ),
                           ],

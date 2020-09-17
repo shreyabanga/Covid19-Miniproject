@@ -38,6 +38,7 @@ class DashboardState extends State<Dashboard>
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Covid-19 Tracker',
         home: Scaffold(
             appBar: AppBar(

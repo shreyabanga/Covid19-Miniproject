@@ -419,7 +419,7 @@ class _SymptomSurveyState extends State<SymptomSurvey> {
                           'Submit',
                           style: TextStyle(color: Colors.white),
                         ),
-                        onPressed: () async {
+                        onPressed: () {
                           print(symptoms);
                           if (alreadySubmitted) {
                             showCupertinoDialog(
@@ -439,7 +439,6 @@ class _SymptomSurveyState extends State<SymptomSurvey> {
                                       ],
                                     ));
                           } else {
-                            await submitForm(symptoms);
                             showCupertinoDialog(
                                 context: context,
                                 builder: (_) => CupertinoAlertDialog(
@@ -450,7 +449,8 @@ class _SymptomSurveyState extends State<SymptomSurvey> {
                                         CupertinoDialogAction(
                                           //child: FlatButton(
                                           child: Text("Yes"),
-                                          onPressed: () {
+                                          onPressed: () async {
+                                            await submitForm(symptoms);
                                             Navigator.of(context).pop();
                                             showCupertinoDialog(
                                                 context: context,
