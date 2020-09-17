@@ -36,6 +36,9 @@ Well, you can see that the account details of one of the developers of the app i
       </tr>
   </table>
   </div>
+  
+  * Every user is registered with role "user" on start. To gain access to the admin features, role needs to be explicitly changed to "admin".
+  
 
 #### Get Real Time Updates on World COVID-19 Data
 
@@ -91,6 +94,10 @@ your *Daily Symptoms Survey* gets sent into the database instantly...
       </tr>
   </table>
   </div>
+  
+  * User can submit the form only once per day.
+  * The app keeps track of which symptoms every user submitted and then increments the symptom counters in the database.
+  	* This way the admin has record of what % of users displayed the specific symptom that day.
 
 
 #### Add notes on how you have been feeling lately
@@ -132,9 +139,19 @@ who didn't! To warn or not to warn, that is all upto you...
   </table>
   </div>
 
-##### Here are some projects we used while creating ours...
-Symptom Add/Delete: https://github.com/boriszv/Programming-Addict-Code-Examples/tree/master/14.%20Consuming%20a%20REST%20API%20Course%20Examples
-Navigation Bar: https://github.com/stevendz/customappbar
+#### Here are some projects/videos we used while creating ours...
+* Symptom Add/Delete: https://github.com/boriszv/Programming-Addict-Code-Examples/tree/master/14.%20Consuming%20a%20REST%20API%20Course%20Examples
+* Navigation Bar: https://github.com/stevendz/customappbar
+* Flutter charts + grid view: https://www.youtube.com/watch?v=4gkt5qDBq4w
+
+#### Flutter Plugins used...
+* Get_it: https://pub.dev/packages/get_it
+* Dio: https://pub.dev/packages/dio
+* Flutter_signin_button: https://pub.dev/packages/flutter_signin_button
+* Flutter_sparkline: https://pub.dev/packages/flutter_sparkline
+* Flutter_staggered_grid_view: https://pub.dev/packages/flutter_staggered_grid_view
+* Delayed_display: https://pub.dev/packages/delayed_display
+
 
 
 
