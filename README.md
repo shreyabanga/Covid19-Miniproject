@@ -92,6 +92,33 @@ your *Daily Symptoms Survey* gets sent into the database instantly...
   </table>
   </div>
 
+
+#### Add notes on how you have been feeling lately
+
+You can keep a diary of your daily symptoms, apart from the symptoms survey, this way you can track your recovery!
+This can be done within the *Symtom Notes* page, that is located at the left corner of your app...
+
+Simply, Add, Delete or Edit your symptoms!
+
+<div style="text-align: center">
+    <table>
+        <tr>
+            <td style="text-align: center">
+                    <img src="https://github.com/shreyabanga/Covid19-Miniproject/blob/master/images/creatingsymptom.gif" width="200"/>
+            </td>  
+
+            <td style="text-align: center">
+                    <img src="https://github.com/shreyabanga/Covid19-Miniproject/blob/master/images/deletsymptom.gif" width="200"/>
+            </td> 
+
+            <td style="text-align: center">
+                    <img src="https://github.com/shreyabanga/Covid19-Miniproject/blob/master/images/editingsymptom.gif" width="200"/>
+            </td>    
+      </tr>
+  </table>
+  </div>
+
+
 #### Admin Powers
 
 Are you an admin with big powers? Well then, you can definetly track your users and see who submitted their daily surveys and 
@@ -106,6 +133,13 @@ who didn't! To warn or not to warn, that is all upto you...
       </tr>
   </table>
   </div>
+
+####### Here are some projects we used while creating ours
+####### Symptom Add/Delete: https://github.com/boriszv/Programming-Addict-Code-Examples/tree/master/14.%20Consuming%20a%20REST%20API%20Course%20Examples
+####### Navigation Bar: https://github.com/stevendz/customappbar
+
+
+
 
 
 
