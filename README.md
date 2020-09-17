@@ -94,7 +94,7 @@ your *Daily Symptoms Survey* gets sent into the database instantly...
 
 #### Admin Powers
 
-Are you and Admin with big powers? Well then, you can definetly track your users and see who submitted their daily surveys and 
+Are you an admin with big powers? Well then, you can definetly track your users and see who submitted their daily surveys and 
 who didn't! To warn or not to warn, that is all upto you...
 
 <div style="text-align: center">
