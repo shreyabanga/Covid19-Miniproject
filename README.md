@@ -132,9 +132,9 @@ who didn't! To warn or not to warn, that is all upto you...
   </table>
   </div>
 
-##### Here are some projects we used while creating ours
-##### Symptom Add/Delete: https://github.com/boriszv/Programming-Addict-Code-Examples/tree/master/14.%20Consuming%20a%20REST%20API%20Course%20Examples
-##### Navigation Bar: https://github.com/stevendz/customappbar
+#####Here are some projects we used while creating ours...
+Symptom Add/Delete: https://github.com/boriszv/Programming-Addict-Code-Examples/tree/master/14.%20Consuming%20a%20REST%20API%20Course%20Examples
+Navigation Bar: https://github.com/stevendz/customappbar
 
 
 
