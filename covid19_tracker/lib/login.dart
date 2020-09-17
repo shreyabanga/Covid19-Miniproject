@@ -13,7 +13,7 @@ class Login extends StatefulWidget {
 
 class LoginState extends State<Login> {
   String isLoggedIn = "false";
-  String userName = "";
+  String _role = "";
   bool visible = false;
 
   @override
@@ -23,6 +23,7 @@ class LoginState extends State<Login> {
       home: Scaffold(
         body: SingleChildScrollView(
           child: Container(
+              height: 900,
               alignment: Alignment.center,
               padding: EdgeInsets.only(top: 100),
               child: Column(
@@ -110,8 +111,12 @@ class LoginState extends State<Login> {
                                   BorderRadius.all(Radius.circular(20.0))),
                           text: "Log in with Google", onPressed: () async {
                         try {
-                          userName = await signInWithGoogle();
-                          Navigator.pushNamed(context, '/home');
+                          _role = await signInWithGoogle();
+                          _role == "admin"
+                              ? Navigator.pushReplacementNamed(
+                                  context, '/admin')
+                              : Navigator.pushReplacementNamed(
+                                  context, '/home');
                         } catch (e) {
                           print(e);
                         }

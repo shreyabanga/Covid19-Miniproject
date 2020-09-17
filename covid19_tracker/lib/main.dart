@@ -1,3 +1,4 @@
+import 'adminView.dart';
 import 'screens/home.dart';
 import 'package:covid19_tracker_navbar/services/notes_service.dart';
 import 'package:flutter/material.dart';
@@ -43,7 +44,7 @@ class MyApp extends StatelessWidget {
                 return Text(snapshot.error.toString());
               }
 
-              return snapshot.hasData ? new Home() : Login();
+              return snapshot.hasData ? new Home(user: snapshot.data) : Login();
             } else {
               return Center(
                 child: Container(
@@ -61,6 +62,7 @@ class MyApp extends StatelessWidget {
           '/dashboard': (context) => new Dashboard(),
           '/logIn': (BuildContext context) => new Login(),
           '/home': (context) => new Home(),
+          '/admin': (context) => new AdminView()
         });
   }
 }

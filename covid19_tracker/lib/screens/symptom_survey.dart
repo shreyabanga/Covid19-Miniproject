@@ -1,5 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import '../user_data.dart';
 
 class SymptomSurvey extends StatefulWidget {
   @override
@@ -17,6 +18,23 @@ class _SymptomSurveyState extends State<SymptomSurvey> {
   double _tasteSlider = 0;
   double _smellSlider = 0;
   double _chestPainSlider = 0;
+
+  bool alreadySubmitted = false;
+
+  Map symptoms = {};
+
+  @override
+  void initState() {
+    super.initState();
+    _getData();
+  }
+
+  _getData() async {
+    var temp = await checkSubmission();
+    setState(() {
+      alreadySubmitted = temp;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,6 +92,10 @@ class _SymptomSurveyState extends State<SymptomSurvey> {
                     setState(
                       () {
                         _coughSlider = value;
+                        if (value != 0)
+                          symptoms['cough'] = value;
+                        else
+                          symptoms.remove('cough');
                       },
                     );
                   },
@@ -104,6 +126,10 @@ class _SymptomSurveyState extends State<SymptomSurvey> {
                     setState(
                       () {
                         _soreThroatSlider = value;
+                        if (value != 0)
+                          symptoms['soreThroat'] = value;
+                        else
+                          symptoms.remove('soreThroat');
                       },
                     );
                   },
@@ -134,6 +160,10 @@ class _SymptomSurveyState extends State<SymptomSurvey> {
                     setState(
                       () {
                         _feverSlider = value;
+                        if (value != 0)
+                          symptoms['fever'] = value;
+                        else
+                          symptoms.remove('fever');
                       },
                     );
                   },
@@ -164,6 +194,10 @@ class _SymptomSurveyState extends State<SymptomSurvey> {
                     setState(
                       () {
                         _diarrheaSlider = value;
+                        if (value != 0)
+                          symptoms['diarrhea'] = value;
+                        else
+                          symptoms.remove('diarrhea');
                       },
                     );
                   },
@@ -194,6 +228,10 @@ class _SymptomSurveyState extends State<SymptomSurvey> {
                     setState(
                       () {
                         _nauseaSlider = value;
+                        if (value != 0)
+                          symptoms['nausea'] = value;
+                        else
+                          symptoms.remove('nausea');
                       },
                     );
                   },
@@ -224,6 +262,10 @@ class _SymptomSurveyState extends State<SymptomSurvey> {
                     setState(
                       () {
                         _headacheSlider = value;
+                        if (value != 0)
+                          symptoms['headache'] = value;
+                        else
+                          symptoms.remove('headache');
                       },
                     );
                   },
@@ -254,6 +296,10 @@ class _SymptomSurveyState extends State<SymptomSurvey> {
                     setState(
                       () {
                         _fatigueSlider = value;
+                        if (value != 0)
+                          symptoms['fatigue'] = value;
+                        else
+                          symptoms.remove('fatigue');
                       },
                     );
                   },
@@ -284,6 +330,10 @@ class _SymptomSurveyState extends State<SymptomSurvey> {
                     setState(
                       () {
                         _tasteSlider = value;
+                        if (value != 0)
+                          symptoms['taste'] = value;
+                        else
+                          symptoms.remove('taste');
                       },
                     );
                   },
@@ -314,6 +364,10 @@ class _SymptomSurveyState extends State<SymptomSurvey> {
                     setState(
                       () {
                         _smellSlider = value;
+                        if (value != 0)
+                          symptoms['smell'] = value;
+                        else
+                          symptoms.remove('smell');
                       },
                     );
                   },
@@ -344,6 +398,10 @@ class _SymptomSurveyState extends State<SymptomSurvey> {
                     setState(
                       () {
                         _chestPainSlider = value;
+                        if (value != 0)
+                          symptoms['chestPain'] = value;
+                        else
+                          symptoms.remove('chestPain');
                       },
                     );
                   },
@@ -361,10 +419,75 @@ class _SymptomSurveyState extends State<SymptomSurvey> {
                           'Submit',
                           style: TextStyle(color: Colors.white),
                         ),
-                        onPressed: () {
-                          Get.snackbar('Check-in complete',
-                              'Be sure to check-in tomorrow as well!');
-                          Get.back();
+                        onPressed: () async {
+                          print(symptoms);
+                          if (alreadySubmitted) {
+                            showCupertinoDialog(
+                                context: context,
+                                builder: (_) => CupertinoAlertDialog(
+                                      title: Text("Oops"),
+                                      content: Text(
+                                          "Already submitted form for today"),
+                                      actions: [
+                                        CupertinoDialogAction(
+                                          //child: FlatButton(
+                                          child: Text("Dismiss"),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                        )
+                                      ],
+                                    ));
+                          } else {
+                            await submitForm(symptoms);
+                            showCupertinoDialog(
+                                context: context,
+                                builder: (_) => CupertinoAlertDialog(
+                                      title: Text("Confirm?"),
+                                      content: Text(
+                                          "Are you sure you want to submit the form?"),
+                                      actions: [
+                                        CupertinoDialogAction(
+                                          //child: FlatButton(
+                                          child: Text("Yes"),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                            showCupertinoDialog(
+                                                context: context,
+                                                builder: (_) =>
+                                                    CupertinoAlertDialog(
+                                                      title: Text("Success!"),
+                                                      content: Text(
+                                                          "Form submitted"),
+                                                      actions: [
+                                                        CupertinoDialogAction(
+                                                          //child: FlatButton(
+                                                          child:
+                                                              Text("Dismiss"),
+                                                          onPressed: () {
+                                                            Navigator.of(
+                                                                    context)
+                                                                .pop();
+                                                          },
+                                                        )
+                                                      ],
+                                                    ));
+                                          },
+                                        ),
+                                        CupertinoDialogAction(
+                                          //child: FlatButton(
+                                          child: Text("No"),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                        )
+                                      ],
+                                    ));
+                          }
+
+                          setState(() {
+                            alreadySubmitted = true;
+                          });
                         },
                       ),
                     ),

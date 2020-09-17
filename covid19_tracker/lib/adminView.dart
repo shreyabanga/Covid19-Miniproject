@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sparkline/flutter_sparkline.dart';
+import 'package:pie_chart/pie_chart.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'user_data.dart';
-import 'covid_data.dart';
 import 'auth.dart';
 
 class AdminView extends StatefulWidget {
@@ -11,45 +11,35 @@ class AdminView extends StatefulWidget {
 }
 
 class AdminState extends State<AdminView> {
-  
   bool loading = true;
-  String dropdownValue = "United States of America";
-  int country = 179;
-  List<double> cases = [];
-  List<String> countries = [];
+  List usersSubmitted;
+  List<Map<String, dynamic>> usersNotSubmitted;
+  Map symptomStats;
 
   var formattedDate;
-
 
   @override
   void initState() {
     super.initState();
     print("fetching data");
-
-    missingForms();
-
-    
-
-    getData();
+    _getData();
   }
 
-  getData() async {
-    var temp1 = await getCovidSummary();
-
-    var temp = await getCases("india");
-    print("here");
+  _getData() async {
+    var temp = await missingForms();
+    var temp1 = await getStats();
     setState(() {
-      countries = temp1;
       loading = false;
-      cases = temp;
-
-      //globalData = covidData["Global"];
+      usersSubmitted = temp[0];
+      usersNotSubmitted = temp[1];
+      symptomStats = temp1;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Covid-19 Tracker',
       home: Scaffold(
         body: Container(
@@ -76,7 +66,7 @@ class AdminState extends State<AdminView> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                   Container(
+                    Container(
                       alignment: Alignment.topRight,
                       child: RaisedButton(
                           child: Text("Logout"),
@@ -126,64 +116,127 @@ class AdminState extends State<AdminView> {
                               padding: const EdgeInsets.all(8.0),
                               child: myTextItems(
                                 "Number of Submitted Forms Today",
-                                "",
-                                
+                                usersSubmitted.length.toString(),
                               ),
                             ),
-
-                            Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: myTextItems(
-                                    "Total Deaths",
-                                    
-                                    formatNumbers(globalData["TotalDeaths"]))),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: myTextItems(
-                                  "Total Recovered",
-                                 
-                                  formatNumbers(globalData["TotalRecovered"])),
+                                "Number of NOT Submitted Forms",
+                                usersNotSubmitted.length.toString(),
+                              ),
                             ),
-
                             Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: mychart1Items(
-                                  "Total Confirmed Cases",
-                                  formatNumbers(countryData[country]
-                                          ["NewConfirmed"]) +
-                                      " New Confirmed Cases",
-                                  formatNumbers(
-                                      countryData[country]["TotalConfirmed"]),
-                                  cases),
+                              child: myListItems(
+                                "Users who submitted:",
+                                usersSubmitted,
+                              ),
                             ),
                             Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: myTextItems(
-                                    "Total Deaths",
-                                    
-                                    formatNumbers(
-                                        countryData[country]["TotalDeaths"]))),
+                              padding: const EdgeInsets.all(8.0),
+                              child: myListItems(
+                                "Users who did NOT submitted:",
+                                usersNotSubmitted,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                alignment: Alignment.center,
+                                child: Text(
+                                    "% users having the following symptoms:",
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                    )),
+                                color: Colors.red[100],
+                              ),
+                            ),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: myTextItems(
-                                  "Total Recovered",
-                                  
-                                  formatNumbers(
-                                      countryData[country]["TotalRecovered"])),
+                                  "Fever", symptomStats['fever'].toString()),
                             ),
-                            // Padding(
-                            //   padding: const EdgeInsets.all(8.0),
-                            //   child: mychart2Items("Conversion","0.9M","+19% of target"),
-                            // ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: myTextItems(
+                                "Cough",
+                                symptomStats['cough'].toString(),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: myTextItems(
+                                "Headache",
+                                symptomStats['headache'].toString(),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: myTextItems(
+                                "Nausea",
+                                symptomStats['nausea'].toString(),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: myTextItems(
+                                "Diarrhea",
+                                symptomStats['diarrhea'].toString(),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: myTextItems(
+                                "Fatigue",
+                                symptomStats['fatigue'].toString(),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: myTextItems(
+                                "Sore Throat",
+                                symptomStats['soreThroat'].toString(),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: myTextItems(
+                                "Chest Pain",
+                                symptomStats['chestPain'].toString(),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: myTextItems(
+                                "Weak sense of smell",
+                                symptomStats['smell'].toString(),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: myTextItems(
+                                "Weak sense of taste",
+                                symptomStats['taste'].toString(),
+                              ),
+                            ),
                           ],
                           staggeredTiles: [
                             StaggeredTile.extent(4, 150.0),
+                            StaggeredTile.extent(4, 150.0),
+                            StaggeredTile.extent(4, 300.0),
+                            StaggeredTile.extent(4, 300.0),
+                            StaggeredTile.extent(4, 100.0),
                             StaggeredTile.extent(2, 150.0),
                             StaggeredTile.extent(2, 150.0),
-                            StaggeredTile.extent(4, 370.0),
                             StaggeredTile.extent(2, 150.0),
                             StaggeredTile.extent(2, 150.0),
-                            //StaggeredTile.extent(2, 120.0),
+                            StaggeredTile.extent(2, 150.0),
+                            StaggeredTile.extent(2, 150.0),
+                            StaggeredTile.extent(2, 150.0),
+                            StaggeredTile.extent(2, 150.0),
+                            StaggeredTile.extent(4, 130.0),
+                            StaggeredTile.extent(4, 130.0),
                           ],
                         ),
                       ),
@@ -191,6 +244,59 @@ class AdminState extends State<AdminView> {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Container myListItems(String title, List data) {
+    return Container(
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: <BoxShadow>[
+            BoxShadow(
+                color: Colors.black.withOpacity(0.1),
+                offset: Offset(10, 10),
+                blurRadius: 20),
+            BoxShadow(
+                color: Colors.white.withOpacity(0.8),
+                offset: Offset(-5, -5),
+                blurRadius: 20),
+          ]),
+      child: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.all(30.0),
+            child: Text(
+              title,
+              style: TextStyle(
+                fontSize: 20.0,
+                color: Theme.of(context).accentColor,
+              ),
+            ),
+          ),
+          Padding(
+              padding: EdgeInsets.all(2.0),
+              child: Container(
+                color: Colors.green[50],
+                height: 170,
+                child: ListView.separated(
+                  separatorBuilder: (context, index) =>
+                      Divider(height: 1, color: Colors.green),
+                  itemBuilder: (_, index) {
+                    return ListTile(
+                        title: Text(
+                          data[index]['name'],
+                          style: TextStyle(color: Colors.tealAccent[700]),
+                        ),
+                        subtitle: Text(
+                          data[index]['email'],
+                        ));
+                  },
+                  itemCount: data.length,
+                ),
+              )),
+        ],
       ),
     );
   }
@@ -229,7 +335,6 @@ class AdminState extends State<AdminView> {
                       ),
                     ),
                   ),
-                  
                   Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Text(
@@ -248,148 +353,22 @@ class AdminState extends State<AdminView> {
     );
   }
 
-  Container mychart1Items(
-      String title, String subtitle, String value, List data) {
-    return Container(
-      decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(20),
-          boxShadow: <BoxShadow>[
-            BoxShadow(
-                color: Colors.black.withOpacity(0.1),
-                offset: Offset(10, 10),
-                blurRadius: 20),
-            BoxShadow(
-                color: Colors.white.withOpacity(0.8),
-                offset: Offset(-5, -5),
-                blurRadius: 20),
-          ]),
-      child: Center(
-        child: Padding(
-          padding: EdgeInsets.all(8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Container(
-                      child: DropdownButton<String>(
-                    value: dropdownValue,
-                    icon: Icon(Icons.keyboard_arrow_down),
-                    iconSize: 25,
-                    elevation: 16,
-                    style: TextStyle(color: Theme.of(context).primaryColorDark),
-                    onChanged: (String newValue) async {
-                      var temp = await getCases(
-                          countryData[countries.indexOf(newValue)]["Slug"]);
-                      setState(() {
-                        dropdownValue = newValue;
-                        country = countries.indexOf(newValue);
-                        cases = temp;
-                      });
-                    },
-                    items:
-                        countries.map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
-                  )),
-                  Padding(
-                    padding: EdgeInsets.all(1.0),
-                    child: Text(
-                      title,
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        color: Theme.of(context).accentColor,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(1.0),
-                    child: Text(
-                      value,
-                      style: TextStyle(
-                          fontSize: 30.0,
-                          color: Theme.of(context).primaryColorLight),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(1.0),
-                    child: Text(
-                      subtitle,
-                      style: TextStyle(
-                        fontSize: 12.0,
-                        color: Colors.blueGrey,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(20.0),
-                    child: new Sparkline(
-                      data: data,
-                      pointsMode: PointsMode.all,
-                      pointSize: 4.0,
-                      pointColor: Theme.of(context).primaryColorDark,
-                      lineWidth: 4.0,
-                      lineGradient: new LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [
-                          Theme.of(context).primaryColor,
-                          Theme.of(context).accentColor
-                        ],
-                      ),
-                      fillMode: FillMode.below,
-                      fillGradient: new LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [
-                          Theme.of(context).primaryColorDark.withOpacity(0.4),
-                          Theme.of(context).primaryColor.withOpacity(0.4),
-                          Colors.white.withOpacity(0.4)
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  String formatNumbers(int num) {
-    if (num >= 1000000)
-      return (num / 1000000).toStringAsFixed(2) + "M";
-    else if (num >= 1000)
-      return (num / 1000).toStringAsFixed(0) + "K";
-    else
-      return num.toString();
-  }
-
-  // Container mychart2Items(String title, String priceVal,String subtitle) {
+  // Container mychart1Items(
+  //     String title, String subtitle, String value, List data) {
   //   return Container(
   //     decoration: BoxDecoration(
-  //       color: Colors.white,
-  //       borderRadius: BorderRadius.circular(20),
-  //       boxShadow: <BoxShadow>[
-  //         BoxShadow(
-  //         color:Colors.black.withOpacity(0.1),
-  //         offset: Offset(10,10),
-  //         blurRadius: 20
-  //         ),
-  //         BoxShadow(
-  //         color:Colors.white.withOpacity(0.8),
-  //         offset: Offset(-5,-5),
-  //         blurRadius: 20
-  //         ),
-
-  //       ]),
+  //         color: Colors.white,
+  //         borderRadius: BorderRadius.circular(20),
+  //         boxShadow: <BoxShadow>[
+  //           BoxShadow(
+  //               color: Colors.black.withOpacity(0.1),
+  //               offset: Offset(10, 10),
+  //               blurRadius: 20),
+  //           BoxShadow(
+  //               color: Colors.white.withOpacity(0.8),
+  //               offset: Offset(-5, -5),
+  //               blurRadius: 20),
+  //         ]),
   //     child: Center(
   //       child: Padding(
   //         padding: EdgeInsets.all(8.0),
@@ -399,38 +378,84 @@ class AdminState extends State<AdminView> {
   //             Column(
   //               mainAxisAlignment: MainAxisAlignment.center,
   //               children: <Widget>[
-
+  //                 Container(
+  //                     child: DropdownButton<String>(
+  //                   value: dropdownValue,
+  //                   icon: Icon(Icons.keyboard_arrow_down),
+  //                   iconSize: 25,
+  //                   elevation: 16,
+  //                   style: TextStyle(color: Theme.of(context).primaryColorDark),
+  //                   onChanged: (String newValue) async {
+  //                     var temp = await getCases(
+  //                         countryData[countries.indexOf(newValue)]["Slug"]);
+  //                     setState(() {
+  //                       dropdownValue = newValue;
+  //                       country = countries.indexOf(newValue);
+  //                       cases = temp;
+  //                     });
+  //                   },
+  //                   items:
+  //                       countries.map<DropdownMenuItem<String>>((String value) {
+  //                     return DropdownMenuItem<String>(
+  //                       value: value,
+  //                       child: Text(value),
+  //                     );
+  //                   }).toList(),
+  //                 )),
   //                 Padding(
   //                   padding: EdgeInsets.all(1.0),
-  //                   child: Text(title, style: TextStyle(
-  //                     fontSize: 20.0,
-  //                     color: Colors.blueAccent,
-  //                   ),),
+  //                   child: Text(
+  //                     title,
+  //                     style: TextStyle(
+  //                       fontSize: 20.0,
+  //                       color: Theme.of(context).accentColor,
+  //                     ),
+  //                   ),
   //                 ),
-
   //                 Padding(
   //                   padding: EdgeInsets.all(1.0),
-  //                   child: Text(priceVal, style: TextStyle(
-  //                     fontSize: 30.0,
-  //                   ),),
+  //                   child: Text(
+  //                     value,
+  //                     style: TextStyle(
+  //                         fontSize: 30.0,
+  //                         color: Theme.of(context).primaryColorLight),
+  //                   ),
   //                 ),
   //                 Padding(
   //                   padding: EdgeInsets.all(1.0),
-  //                   child: Text(subtitle, style: TextStyle(
-  //                     fontSize: 20.0,
-  //                     color: Colors.blueGrey,
-  //                   ),),
+  //                   child: Text(
+  //                     subtitle,
+  //                     style: TextStyle(
+  //                       fontSize: 12.0,
+  //                       color: Colors.blueGrey,
+  //                     ),
+  //                   ),
   //                 ),
-
   //                 Padding(
-  //                   padding: EdgeInsets.all(1.0),
+  //                   padding: EdgeInsets.all(20.0),
   //                   child: new Sparkline(
-  //                     data: data1,
+  //                     data: data,
+  //                     pointsMode: PointsMode.all,
+  //                     pointSize: 4.0,
+  //                     pointColor: Theme.of(context).primaryColorDark,
+  //                     lineWidth: 4.0,
+  //                     lineGradient: new LinearGradient(
+  //                       begin: Alignment.topCenter,
+  //                       end: Alignment.bottomCenter,
+  //                       colors: [
+  //                         Theme.of(context).primaryColor,
+  //                         Theme.of(context).accentColor
+  //                       ],
+  //                     ),
   //                     fillMode: FillMode.below,
   //                     fillGradient: new LinearGradient(
   //                       begin: Alignment.topCenter,
   //                       end: Alignment.bottomCenter,
-  //                       colors: [Colors.amber[800], Colors.amber[200]],
+  //                       colors: [
+  //                         Theme.of(context).primaryColorDark.withOpacity(0.4),
+  //                         Theme.of(context).primaryColor.withOpacity(0.4),
+  //                         Colors.white.withOpacity(0.4)
+  //                       ],
   //                     ),
   //                   ),
   //                 ),
@@ -443,4 +468,12 @@ class AdminState extends State<AdminView> {
   //   );
   // }
 
+  String formatNumbers(int num) {
+    if (num >= 1000000)
+      return (num / 1000000).toStringAsFixed(2) + "M";
+    else if (num >= 1000)
+      return (num / 1000).toStringAsFixed(0) + "K";
+    else
+      return num.toString();
+  }
 }

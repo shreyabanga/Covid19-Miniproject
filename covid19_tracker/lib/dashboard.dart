@@ -19,8 +19,9 @@ class DashboardState extends State<Dashboard>
 
   @override
   void initState() {
-    print("fetching data");
+    print(loading);
     getData();
+    print(loading);
     super.initState();
   }
 
