@@ -4,8 +4,8 @@ class NoteDelete extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text('Wait'),
-      content: Text('Are you sure you want to delete this symptom?'),
+      title: Text('Warning'),
+      content: Text('Are you sure you want to delete this note?'),
       actions: <Widget>[
         FlatButton(
           child: Text('Yes'),

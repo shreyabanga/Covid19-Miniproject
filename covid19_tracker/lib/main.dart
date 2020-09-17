@@ -4,12 +4,30 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
 import 'screens/home.dart';
+<<<<<<< Updated upstream
 import 'package:firebase_auth/firebase_auth.dart';
 import 'login.dart';
 import 'dashboard.dart';
+=======
+>>>>>>> Stashed changes
 
 PageController pageController = PageController(initialPage: 0);
 int currentIndex = 0;
+
+// void main() {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   SystemChrome.setEnabledSystemUIOverlays([]);
+//   runApp(
+//     DevicePreview(
+//       builder: (context) => MyApp(),
+//     ),
+//   );
+// }
+
+// void main() {
+//   //setupLocator();
+//   runApp(App());
+// }
 
 void setupLocator() {
   GetIt.instance.registerLazySingleton(() => NotesService());
@@ -20,10 +38,11 @@ void main() {
   runApp(App());
 }
 
-class MyApp extends StatelessWidget {
+class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+<<<<<<< Updated upstream
         title: 'Covid-19 Tracker',
 
         
@@ -66,5 +85,20 @@ class MyApp extends StatelessWidget {
           
         });
 
+=======
+      //locale: DevicePreview.of(context).locale,
+      //builder: DevicePreview.appBuilder,
+      theme: ThemeData(
+        primaryColor: Colors.tealAccent[400],
+        primaryColorDark: Colors.tealAccent[700],
+        backgroundColor: Colors.tealAccent[100],
+        accentColor: Colors.lightGreen,
+        primaryColorLight: Colors.redAccent,
+        brightness: Brightness.light,
+      ),
+      debugShowCheckedModeBanner: false,
+      home: Home(),
+    );
+>>>>>>> Stashed changes
   }
 }

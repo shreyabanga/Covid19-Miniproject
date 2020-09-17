@@ -24,7 +24,7 @@ class _SymptomSurveyState extends State<SymptomSurvey> {
       //backgroundColor: Colors.deepOrange[50],
       appBar: AppBar(
         title: Text(
-          "Daily Symptoms Survey",
+          "Daily Symptom Survey",
           style: TextStyle(color: Colors.white),
         ),
       ),
