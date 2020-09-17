@@ -29,6 +29,7 @@ class _NoteListState extends State<NoteList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Theme.of(context).primaryColorDark,
         title: Text(
           "Your Symptoms Summary",
           style: TextStyle(color: Colors.white),
@@ -36,38 +37,31 @@ class _NoteListState extends State<NoteList> {
       ),
       floatingActionButton: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Container(
-                    child: Center(
-                      child: Align(
-                        alignment: Alignment.bottomCenter,
-                        child: RaisedButton(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: new BorderRadius.circular(30.0)),
-                          color: Colors.deepOrange[300],
-                          child: Text(
-                            'New',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                          onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (_) => NoteModify()));
-                          },
-                        ),
-                      ),
+            Container(
+              child: Center(
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: RaisedButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(30.0)),
+                    color: Colors.deepOrange[300],
+                    child: Text(
+                      'New',
+                      style: TextStyle(color: Colors.white),
                     ),
+                    onPressed: () {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (_) => NoteModify()));
+                    },
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(75.0),
-                ),
-              ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(75.0),
             ),
           ],
         ),
@@ -98,7 +92,7 @@ class _NoteListState extends State<NoteList> {
             child: ListTile(
               title: Text(
                 notes[index].noteTitle,
-                style: TextStyle(color: Theme.of(context).primaryColor),
+                style: TextStyle(color: Theme.of(context).primaryColorDark),
               ),
               subtitle: Text(
                   'Last edited on ${formatDateTime(notes[index].latestEditDateTime)}'),

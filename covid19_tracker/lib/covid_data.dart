@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 
 Map globalData;
 var countryData;
-//List<String> countries = [];
+
 
 //do something about this?
 var date = new DateTime.now().toString();

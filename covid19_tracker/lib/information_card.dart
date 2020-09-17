@@ -28,7 +28,7 @@ class InformationCard extends StatelessWidget {
                   child: Text(
                     title,
                     style: TextStyle(
-                      fontSize: 21.0,
+                      fontSize: 18.0,
                       color: Colors.lightGreen,
                     ),
                   ),
