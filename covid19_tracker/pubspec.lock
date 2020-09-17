@@ -71,6 +71,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.3"
+<<<<<<< Updated upstream
   dio:
     dependency: "direct main"
     description:
@@ -78,6 +79,8 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.10"
+=======
+>>>>>>> Stashed changes
   fake_async:
     dependency: transitive
     description:
@@ -146,12 +149,17 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+<<<<<<< Updated upstream
   flutter_circular_chart:
+=======
+  flutter_icons:
+>>>>>>> Stashed changes
     dependency: "direct main"
     description:
       name: flutter_circular_chart
       url: "https://pub.dartlang.org"
     source: hosted
+<<<<<<< Updated upstream
     version: "0.1.0"
   flutter_signin_button:
     dependency: "direct main"
@@ -174,24 +182,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.3.2"
+=======
+    version: "1.1.0"
+>>>>>>> Stashed changes
   flutter_test:
     dependency: "direct dev"
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_web_plugins:
-    dependency: transitive
-    description: flutter
-    source: sdk
-    version: "0.0.0"
   font_awesome_flutter:
-    dependency: transitive
-    description:
-      name: font_awesome_flutter
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "8.8.1"
-  google_sign_in:
     dependency: "direct main"
     description:
       name: google_sign_in
@@ -226,6 +225,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.4"
+<<<<<<< Updated upstream
   js:
     dependency: transitive
     description:
@@ -233,6 +233,8 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.6.2"
+=======
+>>>>>>> Stashed changes
   matcher:
     dependency: transitive
     description:
@@ -260,6 +262,7 @@ packages:
       name: pedantic
       url: "https://pub.dartlang.org"
     source: hosted
+<<<<<<< Updated upstream
     version: "1.9.0"
   plugin_platform_interface:
     dependency: transitive
@@ -275,6 +278,9 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.3"
+=======
+    version: "1.9.2"
+>>>>>>> Stashed changes
   sky_engine:
     dependency: transitive
     description: flutter
@@ -286,7 +292,25 @@ packages:
       name: source_span
       url: "https://pub.dartlang.org"
     source: hosted
+<<<<<<< Updated upstream
     version: "1.7.0"
+=======
+    version: "1.8.0-nullsafety"
+  sqflite:
+    dependency: "direct main"
+    description:
+      name: sqflite
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.3.1+1"
+  sqflite_common:
+    dependency: transitive
+    description:
+      name: sqflite_common
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.2+1"
+>>>>>>> Stashed changes
   stack_trace:
     dependency: transitive
     description:
@@ -307,7 +331,18 @@ packages:
       name: string_scanner
       url: "https://pub.dartlang.org"
     source: hosted
+<<<<<<< Updated upstream
     version: "1.0.5"
+=======
+    version: "1.1.0-nullsafety"
+  synchronized:
+    dependency: transitive
+    description:
+      name: synchronized
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.2.0+2"
+>>>>>>> Stashed changes
   term_glyph:
     dependency: transitive
     description:
@@ -328,7 +363,11 @@ packages:
       name: typed_data
       url: "https://pub.dartlang.org"
     source: hosted
+<<<<<<< Updated upstream
     version: "1.2.0"
+=======
+    version: "1.3.0-nullsafety.2"
+>>>>>>> Stashed changes
   vector_math:
     dependency: transitive
     description:
@@ -337,5 +376,5 @@ packages:
     source: hosted
     version: "2.0.8"
 sdks:
-  dart: ">=2.9.0-14.0.dev <3.0.0"
-  flutter: ">=1.17.0 <2.0.0"
+  dart: ">=2.10.0-0.0.dev <2.10.0"
+  flutter: ">=1.10.1 <2.0.0"
