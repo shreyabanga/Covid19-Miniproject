@@ -29,7 +29,7 @@ Well, you can see that the account details of one of the developers of the app i
     <table>
         <tr>
             <td style="text-align: center">
-                    <img src="https://github.com/shreyabanga/Covid19-Miniproject/blob/master/images/database2.png" width="350"/>
+                    <img src="https://github.com/shreyabanga/Covid19-Miniproject/blob/master/images/database2.png"/>
             </td>     
       </tr>
   </table>
@@ -66,21 +66,14 @@ symptoms... and hit submit so that everything gets saved!
     <table>
         <tr>          
             <td style="text-align: center">              
-                      <img src="https://github.com/shreyabanga/Covid19-Miniproject/blob/master/images/submittingforms.gif"/>
-            </td>    
-      </tr>
-  </table>
-  </div>
-
-<div style="text-align: center">
-    <table>
-        <tr>          
-            <td style="text-align: center">              
                       <img src="https://github.com/shreyabanga/Covid19-Miniproject/blob/master/images/survey1.PNG" width="200"/>
             </td>
             <td style="text-align: center">
                      <img src="https://github.com/shreyabanga/Covid19-Miniproject/blob/master/images/survey2.PNG" width="200"/>
-  	    </td>      
+  	    </td>
+            <td style="text-align: center">              
+                      <img src="https://github.com/shreyabanga/Covid19-Miniproject/blob/master/images/submittingforms.gif"/>
+            </td>        
       </tr>
   </table>
   </div>
