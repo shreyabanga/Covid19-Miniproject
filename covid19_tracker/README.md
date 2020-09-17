@@ -1,4 +1,4 @@
-# covid19_tracker_navbar
+# covid19_tracker
 
 A new Flutter application.
 
