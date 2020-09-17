@@ -10,5 +10,19 @@ So the first step is: Logging into your google account! Just enter your email an
 access to our app!
 
 
-![](admindashboard.gif)
+<div style="text-align: center">
+    <table>
+        <tr>
+            <td style="text-align: center">
+                    <img src="https://github.com/shreyabanga/Covid19-Miniproject/blob/master/images/submittingforms.gif" width="200"/>
+            </td>            
+            <td style="text-align: center">              
+                      <img src="https://github.com/shreyabanga/Covid19-Miniproject/blob/master/images/admindashboard.gif" width="200"/>
+            </td>
+            <td style="text-align: center">
+                     <img src="https://github.com/shreyabanga/Covid19-Miniproject/blob/master/images/googlesignin.PNG" width="200"/>
+            </td>       
+      </tr>
+  </table>
+  </div>
 
