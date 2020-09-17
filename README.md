@@ -70,13 +70,40 @@ symptoms... and hit submit so that everything gets saved!
             </td>
             <td style="text-align: center">
                      <img src="https://github.com/shreyabanga/Covid19-Miniproject/blob/master/images/survey2.PNG" width="200"/>
-  	    </td>
-            <td style="text-align: center">              
-                      <img src="https://github.com/shreyabanga/Covid19-Miniproject/blob/master/images/submittingforms.gif"/>
-            </td>        
+  	    </td>        
       </tr>
   </table>
   </div>
+
+<div style="text-align: center">
+    <table>
+        <tr>          
+          <td style="text-align: center">              
+                      <img src="https://github.com/shreyabanga/Covid19-Miniproject/blob/master/images/submittingforms.gif"/>
+            </td>    
+      </tr>
+  </table>
+  </div>
+
+#### Admin Powers
+Are you and Admin with big powers? Well then, you can definetly track your users and see who submitted their daily surveys and 
+who didn't! 
+
+<div style="text-align: center">
+    <table>
+        <tr>          
+            <td style="text-align: center">              
+                      <img src="https://github.com/shreyabanga/Covid19-Miniproject/blob/master/images/admindashboard.gif" width="200"/>
+            </td>
+            <td style="text-align: center">
+                     <img src="https://github.com/shreyabanga/Covid19-Miniproject/blob/master/images/survey2.PNG" width="200"/>
+  	    </td>        
+      </tr>
+  </table>
+  </div>
+
+
+
 
 
 
