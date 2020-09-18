@@ -138,6 +138,21 @@ who didn't! To warn or not to warn, that is all upto you...
       </tr>
   </table>
   </div>
+  
+#### Unit Testing
+
+For unit testing, we have included two methods for testing if the calls from the Covid-19 API returns data or just an empty list.
+
+<div style="text-align: center">
+    <table>
+        <tr>          
+            <td style="text-align: center">              
+                      <img src="https://github.com/shreyabanga/Covid19-Miniproject/blob/master/images/testing.png" />
+            </td>
+      </tr>
+  </table>
+ </div>
+* For further testing, there are multiple try-catch blocks throughout the code which print the errors to console as well as alert dialog boxes.
 
 #### Here are some projects/videos we used while creating ours...
 * Symptom Add/Delete: https://github.com/boriszv/Programming-Addict-Code-Examples/tree/master/14.%20Consuming%20a%20REST%20API%20Course%20Examples
