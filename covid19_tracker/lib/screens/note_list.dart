@@ -78,7 +78,7 @@ class _NoteListState extends State<NoteList> {
             confirmDismiss: (direction) async {
               final result = await showDialog(
                   context: context, builder: (_) => NoteDelete());
-              print(result);
+              //print(result);
               return result;
             },
             background: Container(

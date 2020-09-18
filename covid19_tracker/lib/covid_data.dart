@@ -3,7 +3,6 @@ import 'package:dio/dio.dart';
 Map globalData;
 var countryData;
 
-
 //do something about this?
 var date = new DateTime.now().toString();
 var dateParse = DateTime.parse(date);
@@ -11,21 +10,21 @@ var formattedDate = "${dateParse.year}-${dateParse.month}-${dateParse.day}";
 
 Future<List> getCovidSummary() async {
   List<String> countries = [];
-  var response = await Dio().get('https://api.covid19api.com/summary');
+  var response;
 
-  globalData = response.data['Global'];
-  countryData = response.data["Countries"];
-  for (Map<dynamic, dynamic> country in countryData) {
-    countries.add(country["Country"].toString());
-  }
-  //print(countryData[179]);
+  await Dio().get('https://api.covid19api.com/summary').then((value) {
+    response = value;
+    globalData = response.data['Global'];
+    countryData = response.data["Countries"];
+    for (Map<dynamic, dynamic> country in countryData) {
+      countries.add(country["Country"].toString());
+    }
+  });
 
   return countries;
 }
 
-Future<List<double>> getCases(
-  String country,
-) async {
+Future<List<double>> getCases(String country) async {
   List<double> casesByWeek = [];
 
   var response = await Dio().get(

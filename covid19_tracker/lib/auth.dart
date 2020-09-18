@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 String role;
 
-Future<String> signInWithGoogle() async {
+Future<List> signInWithGoogle() async {
   //sign in with google popup
   final GoogleSignInAccount googleUser = await GoogleSignIn().signIn();
 
@@ -23,9 +23,9 @@ Future<String> signInWithGoogle() async {
   //finally get user details with the credentials
   final FirebaseUser user = (await auth.signInWithCredential(credential)).user;
   role = await addToDatabase(user);
-  print("signed in ${user.displayName} with role $role");
+  //print("signed in ${user.displayName} with role $role");
 
-  return role;
+  return [user, role];
 }
 
 Future<String> signOut() async {
@@ -69,7 +69,7 @@ Future<String> addToDatabase(FirebaseUser user) async {
 }
 
 Future<String> checkAdmin(FirebaseUser user) async {
-  print("user is" + user.displayName);
+  //print("user is" + user.displayName);
   CollectionReference users = Firestore.instance.collection("Users");
   String role;
   await users
