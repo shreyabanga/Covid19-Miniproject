@@ -61,7 +61,7 @@ class MyApp extends StatelessWidget {
           //  '/': (context) => new Login(),
           '/dashboard': (context) => new Dashboard(),
           '/logIn': (BuildContext context) => new Login(),
-          '/home': (context) => new Home(),
+          //'/home': (context) => new Home(),
           '/admin': (context) => new AdminView()
         });
   }

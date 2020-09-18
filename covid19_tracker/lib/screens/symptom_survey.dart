@@ -420,7 +420,7 @@ class _SymptomSurveyState extends State<SymptomSurvey> {
                           style: TextStyle(color: Colors.white),
                         ),
                         onPressed: () {
-                          print(symptoms);
+                          //print(symptoms);
                           if (alreadySubmitted) {
                             showCupertinoDialog(
                                 context: context,

@@ -22,11 +22,11 @@ class HomeState extends State<Home> {
   void initState() {
     super.initState();
     getDataa();
-    print(isAdmin);
+    //print(isAdmin);
   }
 
   getDataa() async {
-    print("firebase user" + widget.user.displayName);
+    //print("firebase user" + widget.user.displayName);
     var temp = await checkAdmin(widget.user);
     setState(() {
       isAdmin = temp;

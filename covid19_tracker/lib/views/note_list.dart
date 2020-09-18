@@ -48,7 +48,7 @@ class NoteList extends StatelessWidget {
             confirmDismiss: (direction) async {
               final result = await showDialog(
                   context: context, builder: (_) => NoteDelete());
-              print(result);
+              //print(result);
               return result;
             },
             background: Container(

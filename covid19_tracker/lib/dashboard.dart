@@ -18,10 +18,11 @@ class DashboardState extends State<Dashboard>
   List<String> countries = [];
 
   @override
+  bool get wantKeepAlive => true;
+
+  @override
   void initState() {
-    print(loading);
     getData();
-    print(loading);
     super.initState();
   }
 
@@ -210,9 +211,6 @@ class DashboardState extends State<Dashboard>
             ))));
   }
 
-  @override
-  bool get wantKeepAlive => true;
-
   Container myTextItems(String title, String subtitle, String value) {
     return Container(
       decoration: BoxDecoration(
@@ -399,109 +397,4 @@ class DashboardState extends State<Dashboard>
     else
       return num.toString();
   }
-
-//  LineChartData mainData(List<double> cases) {
-//    List<Color> gradientColors = [
-//     Colors.white,
-//     Color(0xff23b6e6),
-//     Color(0xff02d39a),
-
-//   ];
-// double count = 1;
-
-// double upperLimitY = cases.reduce(max);
-// double upperLimitX = cases.length.toDouble();
-// List data = cases.map((c) => FlSpot(count++,c)).toList();
-
-//     return LineChartData(
-//       lineTouchData: LineTouchData(enabled: false),
-//       gridData: FlGridData(show: false,),
-//       titlesData: FlTitlesData(
-//         show: true,
-//         bottomTitles: SideTitles(
-//           showTitles: true,
-//           reservedSize: 22,
-//           textStyle:
-//               const TextStyle(color: Color(0xff68737d), fontSize: 10),
-//           getTitles: (value) {
-//             switch (value.toInt()) {
-//               case 1:
-//                 return 'MAR';
-//               case 5:
-//                 return 'APR';
-//               case 9:
-//                 return 'MAY';
-//               case 13:
-//                 return 'JUN';
-//               case 17:
-//                 return 'JUL';
-//               case 21:
-//                 return 'AUG';
-//               case 25:
-//                 return 'SEP';
-//             }
-//             return '';
-//           },
-//           margin: 8,
-//         ),
-//         leftTitles: SideTitles(
-//           showTitles: true,
-//           textStyle: const TextStyle(
-//             color: Color(0xff67727d),
-//             fontSize: 15,
-//           ),
-//           getTitles: (value) {
-//             switch (value.toInt()) {
-//               case 10000:
-//                 return '10k';
-//               case 100000:
-//                 return '100k';
-//               case 1000000:
-//                 return '1M';
-//             }
-//             return '';
-//           },
-//           //reservedSize: 28,
-//           //margin: 12,
-//         ),
-//       ),
-//       borderData:
-//           FlBorderData(show: false),
-
-//       minX: 0,
-//       maxX: 35,
-//       minY: 0,
-//       maxY: 10000000,//cases.reduce(max),
-
-//       lineBarsData: [
-//         LineChartBarData(
-//           spots: data,
-//           // [
-//           //     FlSpot(0, 1),
-//           //     FlSpot(1, 2),
-//           //     FlSpot(2, 100),
-//           //     //FlSpot(3, 100000),
-//           //     //FlSpot(4, 1000),
-//           //     //FlSpot(5, 100000),
-//           //     ],
-
-//           //show: false,
-//           isCurved: true,
-//           colors: [Color(0xff23b6e6),Color(0xff02d39a)],
-//           barWidth: 5,
-//           isStrokeCapRound: true,
-//           dotData: FlDotData(
-//             show: true,
-
-//           ),
-//           belowBarData: BarAreaData(
-//             show: true,
-//             colors: gradientColors.map((color) => color.withOpacity(0.3)).toList(),
-//             gradientFrom: Offset(1.1, 1.5)
-//           ),
-//         ),
-//       ],
-//     );
-//   }
-
 }

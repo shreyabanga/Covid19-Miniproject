@@ -1,3 +1,5 @@
+import 'screens/home.dart';
+
 import 'information_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/button_list.dart';
@@ -13,7 +15,6 @@ class Login extends StatefulWidget {
 
 class LoginState extends State<Login> {
   String isLoggedIn = "false";
-  String _role = "";
   bool visible = false;
 
   @override
@@ -111,12 +112,15 @@ class LoginState extends State<Login> {
                                   BorderRadius.all(Radius.circular(20.0))),
                           text: "Log in with Google", onPressed: () async {
                         try {
-                          _role = await signInWithGoogle();
-                          _role == "admin"
+                          var temp = await signInWithGoogle();
+                          temp[1] == "admin"
                               ? Navigator.pushReplacementNamed(
                                   context, '/admin')
-                              : Navigator.pushReplacementNamed(
-                                  context, '/home');
+                              : Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          Home(user: temp[0])));
                         } catch (e) {
                           print(e);
                         }
