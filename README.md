@@ -93,7 +93,17 @@ your *Daily Symptoms Survey* gets sent into the database instantly...
             </td>    
       </tr>
   </table>
-  </div>
+ </div>
+ 
+ <div style="text-align: center">
+    <table>
+        <tr>          
+          <td style="text-align: center">              
+                      <img src="https://github.com/shreyabanga/Covid19-Miniproject/blob/master/images/database3.png" />
+            </td>    
+      </tr>
+  </table>
+ </div>
   
   * User can submit the form only once per day.
   * The app keeps track of which symptoms every user submitted and then increments the symptom counters in the database.
@@ -154,7 +164,8 @@ For unit testing, we have included two methods for testing if the calls from the
  </div>
 * For further testing, there are multiple try-catch blocks throughout the code which print the errors to console as well as alert dialog boxes.
 
-#### Here are some projects/videos we used while creating ours...
+#### Here are some projects/videos/resources we used while creating ours...
+* Login page icons/images by: <a href="https://www.flaticon.com/authors/pixelmeetup">Pixelmeetup</a> from <a href="https://www.flaticon.com/">www.flaticon.com</a>
 * Symptom Add/Delete: https://github.com/boriszv/Programming-Addict-Code-Examples/tree/master/14.%20Consuming%20a%20REST%20API%20Course%20Examples
 * Navigation Bar: https://github.com/stevendz/customappbar
 * Flutter charts + grid view: https://www.youtube.com/watch?v=4gkt5qDBq4w
